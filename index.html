@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>LogTech | Centro de Recuperación de Crisis</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Micrositio de recuperación de crisis de LogTech para mantener informados a clientes, aliados y colaboradores.">
+    <style>
+        :root {
+            --color-bg: #0f172a;
+            --color-card: #111827;
+            --color-accent: #f97316;
+            --color-accent-soft: rgba(249,115,22,0.1);
+            --color-good: #22c55e;
+            --color-warn: #eab308;
+            --color-bad: #ef4444;
+            --color-text: #e5e7eb;
+            --color-text-soft: #9ca3af;
+            --radius-lg: 14px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top left, #1e293b 0, #020617 55%, #000 100%);
+            color: var(--color-text);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        header {
+            border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background: linear-gradient(to right, rgba(15,23,42,0.96), rgba(15,23,42,0.96));
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            padding: 1.25rem 1.5rem;
+            margin: 0 auto;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 0.9rem;
+            background: radial-gradient(circle at 30% 0, #fed7aa, #f97316 45%, #7c2d12 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: #0b1120;
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.6);
+        }
+
+        .logo-text-main {
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .logo-text-sub {
+            font-size: 0.8rem;
+            color: var(--color-text-soft);
+        }
+
+        .header-side {
+            text-align: right;
+            font-size: 0.75rem;
+            color: var(--color-text-soft);
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.25rem 0.6rem;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.5);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+        }
+
+        .tag-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: #22c55e;
+            box-shadow: 0 0 12px rgba(34,197,94,0.9);
+        }
+
+        .hero {
+            padding: 1.5rem 1.5rem 0.75rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .status-banner {
+            border-radius: 1rem;
+            padding: 1rem 1.25rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.8rem;
+            background: linear-gradient(
+                120deg,
+                rgba(248, 113, 113, 0.16),
+                rgba(234, 179, 8, 0.12)
+            );
+            border: 1px solid rgba(248, 113, 113, 0.5);
+        }
+
+        .status-main {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .status-pill {
+            padding: 0.2rem 0.7rem;
+            border-radius: 999px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.13em;
+            background: rgba(15,23,42,0.8);
+            border: 1px solid rgba(248, 250, 252, 0.1);
+        }
+
+        .status-pill-critico {
+            border-color: rgba(248, 113, 113, 0.7);
+            color: #fecaca;
+        }
+
+        .status-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .status-desc {
+            font-size: 0.8rem;
+            color: #fed7aa;
+        }
+
+        .status-meta {
+            text-align: right;
+            font-size: 0.72rem;
+            color: var(--color-text-soft);
+        }
+
+        .status-meta strong {
+            color: #e5e7eb;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0.75rem 1.5rem 2.5rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: minmax(0, 2fr) minmax(0, 1.25fr);
+            gap: 1.25rem;
+            margin-top: 1.25rem;
+        }
+
+        .card {
+            background: linear-gradient(145deg, rgba(15, 23, 42, 0.96), rgba(12, 10, 9, 0.98));
+            border-radius: var(--radius-lg);
+            padding: 1rem 1.15rem;
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            box-shadow:
+                0 18px 35px rgba(15, 23, 42, 0.95),
+                0 0 0 1px rgba(15, 23, 42, 0.9);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .card-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .card-badge {
+            padding: 0.15rem 0.55rem;
+            border-radius: 999px;
+            font-size: 0.68rem;
+            background: rgba(148, 163, 184, 0.08);
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--color-text-soft);
+        }
+
+        .card-body {
+            font-size: 0.83rem;
+            color: var(--color-text-soft);
+        }
+
+        h1 {
+            margin: 1.2rem 0 0.4rem;
+            font-size: 1.4rem;
+        }
+
+        .hero-subtitle {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--color-text-soft);
+        }
+
+        .steps-list {
+            list-style: none;
+            padding: 0;
+            margin: 0.3rem 0 0;
+            display: grid;
+            gap: 0.45rem;
+        }
+
+        .step-item {
+            display: flex;
+            gap: 0.5rem;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            width: 1.4rem;
+            height: 1.4rem;
+            border-radius: 999px;
+            border: 1px solid rgba(249, 115, 22, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            color: #fed7aa;
+            background: rgba(15, 23, 42, 0.8);
+            flex-shrink: 0;
+        }
+
+        .step-text strong {
+            color: #e5e7eb;
+        }
+
+        .pill-role {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.13em;
+            color: var(--color-text-soft);
+        }
+
+        .channels-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            gap: 0.55rem;
+            font-size: 0.82rem;
+        }
+
+        .channels-list li strong {
+            color: #e5e7eb;
+        }
+
+        .mailto-link,
+        .tel-link {
+            color: #f97316;
+            text-decoration: none;
+        }
+
+        .mailto-link:hover,
+        .tel-link:hover {
+            text-decoration: underline;
+        }
+
+        .systems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 0.6rem;
+            margin-top: 0.25rem;
+        }
+
+        .system-card {
+            border-radius: 0.85rem;
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            padding: 0.6rem 0.7rem;
+            background: radial-gradient(circle at top left, rgba(251, 191, 36,0.12), rgba(15,23,42,1));
+        }
+
+        .system-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.4rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .system-name {
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .status-chip {
+            font-size: 0.68rem;
+            padding: 0.1rem 0.5rem;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.45);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+        }
+
+        .status-ok {
+            background: var(--color-good);
+            box-shadow: 0 0 10px rgba(34,197,94,0.9);
+        }
+
+        .status-partial {
+            background: var(--color-warn);
+            box-shadow: 0 0 10px rgba(234,179,8,0.9);
+        }
+
+        .status-down {
+            background: var(--color-bad);
+            box-shadow: 0 0 10px rgba(239,68,68,0.9);
+        }
+
+        .system-body {
+            font-size: 0.72rem;
+            color: var(--color-text-soft);
+        }
+
+        .faq-list {
+            list-style: none;
+            padding: 0;
+            margin: 0.2rem 0 0;
+            display: grid;
+            gap: 0.4rem;
+            font-size: 0.8rem;
+        }
+
+        .faq-q {
+            font-weight: 600;
+            color: #e5e7eb;
+        }
+
+        .legend {
+            margin-top: 0.5rem;
+            font-size: 0.72rem;
+            color: var(--color-text-soft);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+        }
+
+        .legend-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .legend-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+        }
+
+        /* KPIs */
+
+        .kpi-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 0.4rem;
+            font-size: 0.8rem;
+        }
+
+        .kpi-table th,
+        .kpi-table td {
+            padding: 0.4rem 0.5rem;
+            border-bottom: 1px solid rgba(55,65,81,0.9);
+        }
+
+        .kpi-table th {
+            text-align: left;
+            color: #e5e7eb;
+            background: rgba(15,23,42,0.95);
+        }
+
+        .kpi-tag {
+            font-size: 0.7rem;
+            padding: 0.1rem 0.4rem;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.5);
+        }
+
+        .kpi-tag-tech {
+            background: rgba(37,99,235,0.15);
+            color: #bfdbfe;
+        }
+
+        .kpi-tag-biz {
+            background: rgba(16,185,129,0.15);
+            color: #bbf7d0;
+        }
+
+        /* Timeline */
+
+        .timeline {
+            list-style: none;
+            padding: 0;
+            margin: 0.3rem 0 0;
+            display: grid;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+        }
+
+        .timeline-item {
+            border-left: 2px solid rgba(249,115,22,0.7);
+            padding-left: 0.6rem;
+        }
+
+        .timeline-time {
+            font-size: 0.72rem;
+            color: var(--color-text-soft);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            color: #e5e7eb;
+        }
+
+        /* Survey */
+
+        .survey-form {
+            display: grid;
+            gap: 0.6rem;
+            margin-top: 0.4rem;
+        }
+
+        .survey-group {
+            font-size: 0.8rem;
+        }
+
+        .survey-label {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            display: block;
+        }
+
+        .survey-scale {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.75rem;
+        }
+
+        .survey-scale-text {
+            color: var(--color-text-soft);
+        }
+
+        .survey-scale-options {
+            display: flex;
+            gap: 0.4rem;
+        }
+
+        .survey-scale-options label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.15rem;
+            font-size: 0.7rem;
+            color: var(--color-text-soft);
+        }
+
+        .survey-input,
+        .survey-select,
+        .survey-textarea {
+            width: 100%;
+            border-radius: 0.6rem;
+            border: 1px solid rgba(75,85,99,0.9);
+            padding: 0.35rem 0.45rem;
+            background: rgba(15,23,42,0.9);
+            color: var(--color-text);
+            font-family: inherit;
+            font-size: 0.8rem;
+        }
+
+        .survey-textarea {
+            min-height: 70px;
+            resize: vertical;
+        }
+
+        .survey-helper {
+            font-size: 0.7rem;
+            color: var(--color-text-soft);
+            margin-top: 0.15rem;
+        }
+
+        .survey-submit {
+            margin-top: 0.4rem;
+            padding: 0.45rem 0.9rem;
+            border-radius: 999px;
+            border: none;
+            background: linear-gradient(120deg, #f97316, #ea580c);
+            color: #0b1120;
+            font-weight: 600;
+            font-size: 0.8rem;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .survey-note {
+            margin-top: 0.3rem;
+            font-size: 0.7rem;
+            color: var(--color-text-soft);
+        }
+
+        footer {
+            border-top: 1px solid rgba(30, 64, 175, 0.5);
+            padding: 0.9rem 1.5rem 1.2rem;
+            font-size: 0.72rem;
+            color: var(--color-text-soft);
+            background: radial-gradient(circle at top, rgba(30,64,175,0.15), transparent);
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 0.6rem;
+            align-items: center;
+        }
+
+        .footer-tag {
+            padding: 0.15rem 0.6rem;
+            border-radius: 999px;
+            border: 1px dashed rgba(148, 163, 184, 0.5);
+        }
+
+        .footer-small {
+            font-size: 0.7rem;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .header-side {
+                text-align: left;
+            }
+
+            .status-banner {
+                align-items: flex-start;
+            }
+
+            .status-meta {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="container header-content">
+        <div class="logo">
+            <div class="logo-icon">L</div>
+            <div>
+                <div class="logo-text-main">LogTech</div>
+                <div class="logo-text-sub">Centro de Recuperación de Crisis</div>
+            </div>
+        </div>
+        <div class="header-side">
+            <div class="tag">
+                <span class="tag-dot"></span>
+                <span>Operación 24/7 · Cadena logística crítica</span>
+            </div>
+            <div style="margin-top: 0.25rem;">
+                Micrositio oficial de información durante incidentes mayores
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="status-banner">
+        <div class="status-main">
+            <div class="status-pill status-pill-critico">
+                Incidente mayor · Red logística
+            </div>
+            <div>
+                <div class="status-title">Estado actual: Recuperación parcial de servicios</div>
+                <div class="status-desc">
+                    Estamos restaurando gradualmente la visibilidad de envíos y la operación de los portales de clientes.
+                </div>
+            </div>
+        </div>
+        <div class="status-meta">
+            <div><strong>Última actualización:</strong> 18 noviembre 2025 · 15:00 (GMT-6)</div>
+            <div><strong>Ventana estimada de normalización:</strong> 4 a 6 horas</div>
+        </div>
+    </div>
+
+    <h1>Micrositio de recuperación de crisis · LogTech</h1>
+    <p class="hero-subtitle">
+        Esta página concentra la información oficial para clientes, aliados y colaboradores durante incidentes críticos
+        que afecten la operación logística y los sistemas de seguimiento de LogTech.
+    </p>
+</section>
+
+<main>
+    <div class="grid">
+        <!-- Columna izquierda -->
+        <section class="card">
+            <div class="card-header">
+                <h2 class="card-title">Resumen del incidente actual</h2>
+                <span class="card-badge">Fase de contención y recuperación</span>
+            </div>
+            <div class="card-body">
+                <p>
+                    El <strong>domingo a las 03:45 h</strong> se detectó comportamiento anómalo en uno de los
+                    componentes de la plataforma que soporta el <strong>seguimiento en línea de unidades y envíos</strong>.
+                    Como medida preventiva se activaron <strong>controles de aislamiento</strong> y se inició el
+                    procedimiento de continuidad de negocio para mantener la operación esencial de la red logística.
+                </p>
+                <p><strong>Impacto principal detectado</strong></p>
+                <ul>
+                    <li>Intermitencia en el portal de clientes para consulta de rastreo de embarques.</li>
+                    <li>Retrasos en la actualización de estatus de entregas en ciertas rutas nacionales.</li>
+                    <li>Capacidad reducida en la API de integración para algunos socios logísticos.</li>
+                </ul>
+                <p><strong>Lo que NO está afectado</strong></p>
+                <ul>
+                    <li>Operación física de almacenes y centros de distribución.</li>
+                    <li>Procesos de embarque y recepción en piso.</li>
+                    <li>Integridad de los datos de envíos, facturación y contratos.</li>
+                </ul>
+                <p><strong>Línea de tiempo resumida</strong></p>
+                <ul>
+                    <li><strong>03:45 h</strong> Detección inicial y activación de protocolo de crisis.</li>
+                    <li><strong>04:10 h</strong> Aislamiento de componentes afectados y redirección de tráfico.</li>
+                    <li><strong>05:00 h</strong> Puesta en marcha de infraestructura de respaldo para seguimiento básico.</li>
+                    <li><strong>09:30 h</strong> Inicio de restauración controlada de servicios de consulta avanzada.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="card-header">
+                <h2 class="card-title">Qué debes hacer ahora</h2>
+                <span class="card-badge">Indicaciones por tipo de usuario</span>
+            </div>
+            <div class="card-body">
+                <ol class="steps-list">
+                    <li class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-text">
+                            <div class="pill-role">Clientes y embarcadores</div>
+                            <p>
+                                <strong>Prioriza envíos críticos</strong> y consulta estatus con tu ejecutivo de cuenta
+                                o mediante los canales telefónicos indicados abajo cuando el portal no esté disponible.
+                            </p>
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-text">
+                            <div class="pill-role">Socios logísticos y transportistas</div>
+                            <p>
+                                Mantén los <strong>canales de coordinación operativa tradicionales</strong>
+                                (radio, teléfono, chat interno). Reporta cualquier desviación de ruta de inmediato.
+                            </p>
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-text">
+                            <div class="pill-role">Colaboradores internos</div>
+                            <p>
+                                Respeta el <strong>congelamiento de cambios</strong> en sistemas indicado por TI
+                                y documenta todas las acciones en los formatos de gestión de crisis establecidos.
+                            </p>
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-text">
+                            <div class="pill-role">Medios y terceros</div>
+                            <p>
+                                Toda consulta debe canalizarse exclusivamente al <strong>equipo de Comunicación
+                                Corporativa</strong>. Evita difundir información no confirmada.
+                            </p>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Canales oficiales -->
+        <section class="card">
+            <div class="card-header">
+                <h2 class="card-title">Canales oficiales de comunicación</h2>
+                <span class="card-badge">Durante la gestión de crisis</span>
+            </div>
+            <div class="card-body">
+                <ul class="channels-list">
+                    <li>
+                        <strong>Correo para clientes clave:</strong>
+                        <a class="mailto-link" href="mailto:crisis-cliente@logtech.com">
+                            crisis-cliente@logtech.com
+                        </a>
+                        <br>
+                        Uso: actualización de embarques críticos, acuerdos operativos temporales.
+                    </li>
+                    <li>
+                        <strong>Línea de atención 24/7:</strong>
+                        <a class="tel-link" href="tel:+521800000LOG">
+                            +52 1 800 000 LOG
+                        </a>
+                        <br>
+                        Uso: incidentes urgentes, impacto en la operación diaria.
+                    </li>
+                    <li>
+                        <strong>War room virtual para aliados:</strong> acceso limitado por invitación a sala de coordinación
+                        con TI, Operaciones y Seguridad de la Información.
+                    </li>
+                    <li>
+                        <strong>Boletines de estado del sistema:</strong> se publican cada 60 minutos en este micrositio
+                        mientras dure el incidente mayor.
+                    </li>
+                    <li>
+                        <strong>Portavoces autorizados:</strong> Dirección de Operaciones, Dirección de Tecnología,
+                        Comunicación Corporativa.
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Estado de sistemas -->
+        <section class="card">
+            <div class="card-header">
+                <h2 class="card-title">Estado de los sistemas clave</h2>
+                <span class="card-badge">Cadena logística</span>
+            </div>
+            <div class="card-body">
+                <div class="systems-grid">
+                    <div class="system-card">
+                        <div class="system-header">
+                            <div class="system-name">Portal de clientes</div>
+                            <div class="status-chip">
+                                <span class="status-dot status-partial"></span>
+                                Parcial
+                            </div>
+                        </div>
+                        <div class="system-body">
+                            Intermitencia en consulta detallada de rastreos. Operación básica disponible.
+                        </div>
+                    </div>
+                    <div class="system-card">
+                        <div class="system-header">
+                            <div class="system-name">API de seguimiento</div>
+                            <div class="status-chip">
+                                <span class="status-dot status-partial"></span>
+                                Capacidad reducida
+                            </div>
+                        </div>
+                        <div class="system-body">
+                            Limitación temporal de llamadas por minuto para ciertos integradores.
+                        </div>
+                    </div>
+                    <div class="system-card">
+                        <div class="system-header">
+                            <div class="system-name">Centros de datos</div>
+                            <div class="status-chip">
+                                <span class="status-dot status-ok"></span>
+                                Operativo
+                            </div>
+                        </div>
+                        <div class="system-body">
+                            Sitio primario y de respaldo funcionales. No se detecta pérdida de datos.
+                        </div>
+                    </div>
+                    <div class="system-card">
+                        <div class="system-header">
+                            <div class="system-name">Respaldos y DR</div>
+                            <div class="status-chip">
+                                <span class="status-dot status-ok"></span>
+                                Asegurado
+                            </div>
+                        </div>
+                        <div class="system-body">
+                            Copias de seguridad verificadas. Procedimientos de recuperación en curso.
+                        </div>
+                    </div>
+                    <div class="system-card">
+                        <div class="system-header">
+                            <div class="system-name">Operación física</div>
+                            <div class="status-chip">
+                                <span class="status-dot status-ok"></span>
+                                Normal
+                            </div>
+                        </div>
+                        <div class="system-body">
+                            Rutas, almacenes y entregas operando con planes alternos de coordinación.
+                        </div>
+                    </div>
+                    <div class="system-card">
+                        <div class="system-header">
+                            <div class="system-name">Canal de facturación</div>
+                            <div class="status-chip">
+                                <span class="status-dot status-ok"></span>
+                                Disponible
+                            </div>
+                        </div>
+                        <div class="system-body">
+                            Generación de documentos fiscales sin afectación reportada.
+                        </div>
+                    </div>
+                </div>
+                <div class="legend">
+                    <div class="legend-item">
+                        <span class="legend-dot status-ok"></span> Servicio operativo
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-dot status-partial"></span> Operación parcial
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-dot status-down"></span> Fuera de servicio
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="card">
+            <div class="card-header">
+                <h2 class="card-title">Preguntas frecuentes durante una crisis</h2>
+                <span class="card-badge">Gestión de crisis LogTech</span>
+            </div>
+            <div class="card-body">
+                <ul class="faq-list">
+                    <li>
+                        <div class="faq-q">¿Mis envíos están en riesgo de perderse?</div>
+                        <div>
+                            No. La operación física continúa y la integridad de los datos se mantiene.
+                            El impacto principal está en la visibilidad y tiempos de actualización.
+                        </div>
+                    </li>
+                    <li>
+                        <div class="faq-q">¿Cómo se prioriza la recuperación?</div>
+                        <div>
+                            Primero se asegura la contención del incidente, luego se priorizan los sistemas
+                            que soportan la operación logística crítica y finalmente las funciones complementarias.
+                        </div>
+                    </li>
+                    <li>
+                        <div class="faq-q">¿Cada cuánto se actualizará este micrositio?</div>
+                        <div>
+                            Durante un incidente mayor, se publican actualizaciones al menos cada 60 minutos
+                            o cuando hay un cambio relevante en el estado de los servicios.
+                        </div>
+                    </li>
+                    <li>
+                        <div class="faq-q">¿Qué pasa con mis datos personales y de negocio?</div>
+                        <div>
+                            LogTech aplica controles de seguridad y cifrado alineados con buenas prácticas y
+                            marcos de referencia. Hasta el momento no se ha identificado fuga de información.
+                        </div>
+                    </li>
+                    <li>
+                        <div class="faq-q">¿Con quién puedo escalar un caso crítico?</div>
+                        <div>
+                            Contacta a tu ejecutivo de cuenta o utiliza la línea 24/7 indicando
+                            que se trata de un caso de <strong>impacto alto en la operación</strong>
+                            para activar los niveles de escalamiento definidos.
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- MÉTRICAS DE RECUPERACIÓN -->
+        <section class="card">
+            <div class="card-header">
+                <h2 class="card-title">Métricas de recuperación</h2>
+                <span class="card-badge">KPI técnicos y de negocio</span>
+            </div>
+            <div class="card-body">
+                <p>
+                    Estos indicadores se utilizan para evaluar la efectividad de la respuesta a la crisis
+                    y el impacto en la operación logística y en el negocio.
+                </p>
+                <table class="kpi-table">
+                    <thead>
+                    <tr>
+                        <th>KPI</th>
+                        <th>Tipo</th>
+                        <th>Objetivo</th>
+                        <th>Valor actual (simulado)</th>
+                        <th>Comentario</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>MTTR de servicios críticos (tiempo medio de recuperación)</td>
+                        <td><span class="kpi-tag kpi-tag-tech">Técnico</span></td>
+                        <td>&lt; 4 horas</td>
+                        <td>3.2 horas</td>
+                        <td>Dentro del umbral definido en el plan de continuidad.</td>
+                    </tr>
+                    <tr>
+                        <td>Disponibilidad del portal de clientes durante la crisis</td>
+                        <td><span class="kpi-tag kpi-tag-tech">Técnico</span></td>
+                        <td>&gt;= 95 %</td>
+                        <td>92 %</td>
+                        <td>Se documenta desviación para plan de mejora de resiliencia.</td>
+                    </tr>
+                    <tr>
+                        <td>Porcentaje de entregas a tiempo en rutas críticas</td>
+                        <td><span class="kpi-tag kpi-tag-biz">Negocio</span></td>
+                        <td>&gt;= 97 %</td>
+                        <td>95 %</td>
+                        <td>Se activó prioridad para embarques médicos y perecederos.</td>
+                    </tr>
+                    <tr>
+                        <td>Pedidos sin actualización de tracking por más de 2 horas</td>
+                        <td><span class="kpi-tag kpi-tag-biz">Negocio</span></td>
+                        <td>&lt; 5 %</td>
+                        <td>7 %</td>
+                        <td>Uso intensivo de canales alternos para mitigar percepción de desconexión.</td>
+                    </tr>
+                    <tr>
+                        <td>Porcentaje de integraciones con socios restablecidas</td>
+                        <td><span class="kpi-tag kpi-tag-tech">Técnico</span></td>
+                        <td>100 % al cierre del día</td>
+                        <td>80 %</td>
+                        <td>20 % restante en proceso de pruebas conjuntas.</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <p class="survey-helper">
+                    Nota: Los valores mostrados son de simulación académica y pueden adaptarse a diferentes escenarios.
+                </p>
+            </div>
+        </section>
+
+        <!-- LÍNEA DE TIEMPO DE MEJORAS IMPLEMENTADAS -->
+        <section class="card">
+            <div class="card-header">
+                <h2 class="card-title">Línea de tiempo de mejoras implementadas</h2>
+                <span class="card-badge">Ciclo de lecciones aprendidas</span>
+            </div>
+            <div class="card-body">
+                <p>
+                    Después del incidente se establece un plan de mejoras para incrementar la resiliencia de la
+                    plataforma logística y reducir el impacto de futuros eventos.
+                </p>
+                <ul class="timeline">
+                    <li class="timeline-item">
+                        <div class="timeline-time">Semana 1 · Cierre de incidente</div>
+                        <div class="timeline-title">Reporte ejecutivo y análisis post mortem</div>
+                        <div>
+                            Documentación de la causa raíz preliminar, decisiones clave tomadas y mapa de impacto en
+                            clientes y aliados.
+                        </div>
+                    </li>
+                    <li class="timeline-item">
+                        <div class="timeline-time">Semana 2 · Endurecimiento técnico</div>
+                        <div class="timeline-title">Reforzamiento de controles en infraestructura híbrida</div>
+                        <div>
+                            Ajuste de reglas en firewalls y balanceadores, revisión de configuraciones en nube
+                            y en sitio, endurecimiento de accesos administrativos.
+                        </div>
+                    </li>
+                    <li class="timeline-item">
+                        <div class="timeline-time">Semana 3 · Mejora de monitoreo</div>
+                        <div class="timeline-title">Nuevas alertas y tableros de crisis</div>
+                        <div>
+                            Creación de vistas específicas para la red logística, umbrales de alerta temprana
+                            y simulacros de activación de war room.
+                        </div>
+                    </li>
+                    <li class="timeline-item">
+                        <div class="timeline-time">Mes 2 · Enfoque en negocio</div>
+                        <div class="timeline-title">Ajustes a acuerdos de nivel de servicio (SLA)</div>
+                        <div>
+                            Revisión de compromisos de tiempo de recuperación con clientes clave y socios,
+                            y construcción de métricas de impacto financiero.
+                        </div>
+                    </li>
+                    <li class="timeline-item">
+                        <div class="timeline-time">Mes 3 · Cultura y entrenamiento</div>
+                        <div class="timeline-title">Simulacros integrales de crisis LogTech</div>
+                        <div>
+                            Ejercicios que involucran TI, Operaciones, Seguridad y Comunicación para practicar
+                            la coordinación bajo presión y el uso de este micrositio.
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ENCUESTA DE SATISFACCIÓN SIMULADA -->
+        <section class="card">
+            <div class="card-header">
+                <h2 class="card-title">Encuesta de satisfacción de stakeholders</h2>
+                <span class="card-badge">Simulación académica</span>
+            </div>
+            <div class="card-body">
+                <p>
+                    Esta encuesta permite medir de forma simulada la percepción de los distintos grupos de interés
+                    sobre la gestión de la crisis y la recuperación de servicios.
+                </p>
+                <form class="survey-form">
+                    <div class="survey-group">
+                        <label class="survey-label" for="segmento">
+                            1. Segmento de stakeholder
+                        </label>
+                        <select id="segmento" class="survey-select">
+                            <option value="">Selecciona una opción</option>
+                            <option value="cliente">Cliente empresarial</option>
+                            <option value="aliado">Aliado logístico o transportista</option>
+                            <option value="interno">Colaborador interno</option>
+                            <option value="otro">Otro interesado</option>
+                        </select>
+                    </div>
+
+                    <div class="survey-group">
+                        <label class="survey-label">
+                            2. Claridad de la comunicación durante la crisis
+                        </label>
+                        <div class="survey-scale">
+                            <span class="survey-scale-text">Muy baja</span>
+                            <div class="survey-scale-options">
+                                <label>
+                                    <input type="radio" name="comunicacion" value="1">
+                                    <span>1</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="comunicacion" value="2">
+                                    <span>2</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="comunicacion" value="3">
+                                    <span>3</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="comunicacion" value="4">
+                                    <span>4</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="comunicacion" value="5">
+                                    <span>5</span>
+                                </label>
+                            </div>
+                            <span class="survey-scale-text">Muy alta</span>
+                        </div>
+                    </div>
+
+                    <div class="survey-group">
+                        <label class="survey-label">
+                            3. Confianza en la capacidad de LogTech para recuperarse de incidentes
+                        </label>
+                        <div class="survey-scale">
+                            <span class="survey-scale-text">Muy baja</span>
+                            <div class="survey-scale-options">
+                                <label>
+                                    <input type="radio" name="confianza" value="1">
+                                    <span>1</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="confianza" value="2">
+                                    <span>2</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="confianza" value="3">
+                                    <span>3</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="confianza" value="4">
+                                    <span>4</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="confianza" value="5">
+                                    <span>5</span>
+                                </label>
+                            </div>
+                            <span class="survey-scale-text">Muy alta</span>
+                        </div>
+                    </div>
+
+                    <div class="survey-group">
+                        <label class="survey-label" for="comentarios">
+                            4. Comentarios clave o lecciones aprendidas desde tu perspectiva
+                        </label>
+                        <textarea id="comentarios" class="survey-textarea" placeholder="Escribe tus comentarios..."></textarea>
+                        <div class="survey-helper">
+                            Ejemplo para la clase: percepción de tiempos de respuesta, calidad de la información,
+                            coordinación entre equipos, etc.
+                        </div>
+                    </div>
+
+                    <button type="button" class="survey-submit">
+                        Enviar respuesta (simulado)
+                    </button>
+                    <p class="survey-note">
+                        Esta encuesta no envía información real. Está diseñada para documentar en la clase
+                        cómo se mediría la satisfacción de stakeholders durante y después de una crisis.
+                    </p>
+                </form>
+            </div>
+        </section>
+    </div>
+</main>
+
+<footer>
+    <div class="footer-inner">
+        <div class="footer-small">
+            © LogTech · Centro de Recuperación de Crisis. Todos los derechos reservados.
+        </div>
+        <div class="footer-small footer-tag">
+            Micrositio diseñado para simulaciones académicas de gestión de crisis en entornos logísticos.
+        </div>
+    </div>
+</footer>
+</body>
+</html>
